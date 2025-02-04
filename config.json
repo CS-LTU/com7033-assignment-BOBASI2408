@@ -1,0 +1,16 @@
+{
+    "database": {
+        "sqlite": {
+            "patient_db": "database/sqlite/patient.db",
+            "user_db": "database/sqlite/user.db"
+        },
+        "mongodb": {
+            "patient_collection": "database/mongodb/patient_collection",
+            "user_collection": "database/mongodb/user_collection"
+        }
+    },
+    "server": {
+        "host": "localhost",
+        "port": 5000
+    }
+}

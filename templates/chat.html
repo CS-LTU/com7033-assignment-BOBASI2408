@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3>MedicPredict AI</h3>
+                </div>
+                <div class="card-body chat-container">
+                    <div class="chat-messages p-3 border rounded bg-light" id="chat-messages" style="height: 300px; overflow-y: auto;">
+                        <!-- Chat messages will appear here -->
+                    </div>
+                    <form class="chat-input mt-3 d-flex" onsubmit="event.preventDefault(); sendMessage();">
+                        <input 
+                            type="text" 
+                            id="user-message" 
+                            class="form-control" 
+                            placeholder="Type your message..." 
+                            required>
+                        <button 
+                            type="submit" 
+                            class="btn btn-primary ms-2">
+                            Send
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function sendMessage() {
+        const userMessage = document.getElementById('user-message').value.trim();
+        if (!userMessage) {
+            alert("Message cannot be empty.");
+            return;
+        }
+
+        const chatMessages = document.getElementById('chat-messages');
+
+        // Display user message
+        const userMessageElement = document.createElement('div');
+        userMessageElement.className = 'text-end mb-2';
+        userMessageElement.innerHTML = `<span class="badge bg-secondary">You: ${userMessage}</span>`;
+        chatMessages.appendChild(userMessageElement);
+
+        try {
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: userMessage }),
+            });
+
+            const data = await response.json();
+
+            // Display AI response
+            const aiMessageElement = document.createElement('div');
+            aiMessageElement.className = 'text-start mb-2';
+            aiMessageElement.innerHTML = `<span class="badge bg-info">AI: ${data.response}</span>`;
+            chatMessages.appendChild(aiMessageElement);
+
+            // Clear input and scroll to the latest message
+            document.getElementById('user-message').value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        } catch (error) {
+            console.error('Error:', error);
+            const errorElement = document.createElement('div');
+            errorElement.className = 'text-danger';
+            errorElement.textContent = 'Error communicating with the chatbot. Please try again.';
+            chatMessages.appendChild(errorElement);
+        }
+    }
+</script>
+{% endblock %}

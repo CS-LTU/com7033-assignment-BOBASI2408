@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="container mx-auto py-8">
+    <h1 class="text-3xl font-bold mb-6 text-blue-800">Manage Patients</h1>
+
+    <!-- Upload CSV File -->
+    <div class="mb-8">
+        <form method="POST" action="{{ url_for('manage_patients') }}" enctype="multipart/form-data" class="flex items-center space-x-4">
+            <label for="file" class="text-lg font-semibold">Upload Patients CSV:</label>
+            <input type="file" id="file" name="file" accept=".csv" required class="border p-2 rounded">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Upload</button>
+        </form>
+    </div>
+
+    <!-- Patients List -->
+    <h2 class="text-2xl font-semibold mb-4 text-blue-800">Patients List</h2>
+    {% if patients %}
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-200">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="py-2 px-4 border-b">ID</th>
+                        <th class="py-2 px-4 border-b">Gender</th>
+                        <th class="py-2 px-4 border-b">Age</th>
+                        <th class="py-2 px-4 border-b">Hypertension</th>
+                        <th class="py-2 px-4 border-b">Heart Disease</th>
+                        <th class="py-2 px-4 border-b">Ever Married</th>
+                        <th class="py-2 px-4 border-b">Work Type</th>
+                        <th class="py-2 px-4 border-b">Residence Type</th>
+                        <th class="py-2 px-4 border-b">Avg Glucose Level</th>
+                        <th class="py-2 px-4 border-b">BMI</th>
+                        <th class="py-2 px-4 border-b">Smoking Status</th>
+                        <th class="py-2 px-4 border-b">Stroke</th>
+                        <th class="py-2 px-4 border-b">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for patient in patients %}
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-2 px-4 border-b">{{ patient.id }}</td>
+                            <td class="py-2 px-4 border-b">{{ patient.gender }}</td>
+                            <td class="py-2 px-4 border-b">{{ patient.age }}</td>
+                            <td class="py-2 px-4 border-b">{{ patient.hypertension }}</td>
+                            <td class="py-2 px-4 border-b">{{ patient.heart_disease }}</td>
+                            <td class="py-2 px-4 border-b">{{ patient.ever_married }}</td>
+                            <td class="py-2 px-4 border-b">{{ patient.work_type }}</td>
+                            <td class="py-2 px-4 border-b">{{ patient.residence_type }}</td>
+                            <td class="py-2 px-4 border-b">{{ patient.avg_glucose_level }}</td>
+                            <td class="py-2 px-4 border-b">{{ patient.bmi }}</td>
+                            <td class="py-2 px-4 border-b">{{ patient.smoking_status }}</td>
+                            <td class="py-2 px-4 border-b">{{ patient.stroke }}</td>
+                            <td class="py-2 px-4 border-b">
+                                <form method="POST" action="{{ url_for('delete_patient', id=patient.id) }}" class="inline">
+                                    <button type="submit" class="text-red-600 hover:text-red-800">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-gray-700">No patients found.</p>
+    {% endif %}
+</main>
+{% endblock %}

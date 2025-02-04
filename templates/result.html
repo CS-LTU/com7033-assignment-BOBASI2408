@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Diagnosis Result</h1>
+    <h1 class="text-center mb-4">Records sent to your email</h1>
+    <div class="card mx-auto text-center" style="width: 20rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        <!-- Diagnosis Image -->
+        <img 
+            src="{{ image_url if image_url else url_for('static', filename='logo.png') }}" 
+            class="card-img-top" 
+            alt="Diagnosis Image" 
+            style="height: 200px; object-fit: cover;"
+        >
+        <div class="card-body">
+            <!-- Diagnosis Title -->
+            <h5 class="card-title text-success" style="font-weight: bold;">
+                {{ "No Sign of Stroke" if result == "No Stroke" else "Diagnosis" }}
+            </h5>
+            <!-- Diagnosis Details -->
+            <p class="card-text text-muted" style="font-size: 1.1rem;">
+                {{ result }}
+            </p>
+            <!-- Back to Form Button -->
+            <a href="{{ url_for('chatbot') }}" class="btn btn-primary mt-3">Talk with  AI</a>
+            <!-- Back to Form Button -->
+            <a href="{{ url_for('manage_patients') }}" class="btn btn-primary mt-3">Manage Records</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

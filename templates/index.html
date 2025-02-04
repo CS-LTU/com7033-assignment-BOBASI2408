@@ -1,0 +1,127 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+    <section id="home" class="container mx-auto py-16 grid md:grid-cols-2 gap-8 items-center">
+        <div>
+            <h2 class="text-4xl font-bold mb-6 text-blue-800">Stroke Risk Management with Advanced AI</h2>
+            <p class="text-xl mb-8 text-gray-700">
+                MediPredict leverages machine learning to provide early stroke risk assessment, empowering healthcare professionals with predictive insights.
+            </p>
+            <div class="flex space-x-4">
+                <a href="{{ url_for('register') }}" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700">Get Started</a>
+                <a href="#features" class="border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-full hover:bg-blue-50">Learn More</a>
+            </div>
+        </div>
+        <div>
+            <img src="/static/hero-image.png" alt="Stroke Risk Visualization" class="rounded-lg shadow-xl">
+        </div>
+    </section>
+
+    <section id="features" class="bg-white py-16">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12 text-blue-800">Key Features</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-100 p-8 rounded-lg shadow-md">
+                    <img src="/static/feature1.png" alt="AI Prediction" class="mx-auto mb-6 h-64 w-64 object-contain">
+                    <h3 class="text-xl font-semibold mb-4">Advanced AI Prediction</h3>
+                    <p>Stroke is a medical condition in which poor blood flow to a part of the brain causes cell death.There are two main types of stroke: ischemic, due to lack of blood flow, and hemorrhagic, due to bleeding. Machine learning algorithms analyze multiple health factors to assess stroke risk.</p>
+                </div>
+                <div class="bg-gray-100 p-8 rounded-lg shadow-md">
+                    <img src="/static/feature2.png" alt="Data Security" class="mx-auto mb-6 h-64 w-64">
+                    <h3 class="text-xl font-semibold mb-4">Secure Data Management</h3>
+                    <p> MediPredict implements robust data security through advanced 256-bit AES encryption, ensuring HIPAA and GDPR compliance. Our platform protects patient information with multi-factor authentication, role-based access controls, and continuous threat monitoring.</p>
+                </div>
+                <div class="bg-gray-100 p-8 rounded-lg shadow-md">
+                    <img src="/static/feature3.png" alt="Personalized Insights" class="mx-auto mb-6 h-64 w-64">
+                    <h3 class="text-xl font-semibold mb-4">Personalized Insights</h3>
+                    <p>MediPredict delivers personalized health risk insights by analyzing comprehensive patient data, medical history, genetic predispositions, lifestyle factors, and real-time health metrics. Our advanced machine learning algorithms correlate multiple health indicators to generate precise stroke risk predictions </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container mx-auto py-16">
+        <h2 class="text-3xl font-bold text-center mb-12 text-blue-800">Why MediPredict?</h2>
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <canvas id="riskChart"></canvas>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold mb-6">Global Impact of Stroke</h3>
+                <ul class="space-y-4 text-gray-700">
+                    <li>🌍 Second leading cause of death worldwide</li>
+                    <li>🩺 Early detection can reduce risk by up to 80%</li>
+                    <li>📊 Personalized risk assessment using advanced analytics</li>
+                    <li>🤝 Trusted by healthcare professionals</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Features Section -->
+<section id="achievements" class="bg-gray-100 py-16">
+    <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-12 text-blue-800">Functionalities</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="flex items-center p-8 rounded-lg shadow-md">
+                <img src="/static/tick.png" alt="Achieved" class="h-16 w-16 mr-6">
+                <p class="text-2xl font-semibold">Predictive Health Intelligence: Neural Network-Driven Risk Stratification</p>
+            </div>
+            <div class="flex items-center p-8 rounded-lg shadow-md">
+                <img src="/static/tick.png" alt="Achieved" class="h-16 w-16 mr-6">
+                <p class="text-2xl font-semibold">Email Notification of your Medical Record</p>
+            </div>
+            <div class="flex items-center p-8 rounded-lg shadow-md">
+                <img src="/static/tick.png" alt="Achieved" class="h-16 w-16 mr-6">
+                <p class="text-2xl font-semibold">Medipredict AI Chat Assistant</p>
+            </div>
+            <div class="flex items-center p-8 rounded-lg shadow-md">
+                <img src="/static/tick.png" alt="Achieved" class="h-16 w-16 mr-6">
+                <p class="text-2xl font-semibold">Manage Your Personal Records</p>
+            </div>
+            <div class="flex items-center p-8 rounded-lg shadow-md">
+                <img src="/static/tick.png" alt="Achieved" class="h-16 w-16 mr-6">
+                <p class="text-2xl font-semibold">Encryption and Data Privacy</p>
+            </div>
+            <div class="flex items-center p-8 rounded-lg shadow-md">
+                <img src="/static/tick.png" alt="Achieved" class="h-16 w-16 mr-6">
+                <p class="text-2xl font-semibold">User Authentication</p>
+            </div>
+            <div class="flex items-center p-8 rounded-lg shadow-md">
+                <img src="/static/tick.png" alt="Achieved" class="h-16 w-16 mr-6">
+                <p class="text-2xl font-semibold">Multiple Patient Database Management</p>
+            </div>
+            <div class="flex items-center p-8 rounded-lg shadow-md">
+                <img src="/static/tick.png" alt="Achieved" class="h-16 w-16 mr-6">
+                <p class="text-2xl font-semibold">Upload Records and Manage Records</p>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+<script>
+    // Risk Chart Configuration
+    var ctx = document.getElementById('riskChart').getContext('2d');
+    var riskChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Low Risk', 'Moderate Risk', 'High Risk'],
+            datasets: [{
+                data: [60, 30, 10],
+                backgroundColor: ['#10B981', '#F59E0B', '#EF4444']
+            }]
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Stroke Risk Distribution'
+            }
+        }
+    });
+</script>
+</body>
+</html>
+{% endblock %}
