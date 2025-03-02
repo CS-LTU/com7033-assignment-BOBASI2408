@@ -16,3 +16,5 @@ with app.app_context():
 # Run the app if this file is executed directly
 if __name__ == '__main__':
     app.run(debug=True)
+#
+# git remote add origin https://github.com/CS-LTU/com7033-assignment-BOBASI2408.git

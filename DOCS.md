@@ -219,3 +219,184 @@ gunicorn -w 4 -b 0.0.0.0:5000 app:app
 
 MediPredict is the future of risk management in healthcare. Together, we can transform patient care through the power of AI and innovative technology.
 ```
+**Software testing**
+## Database Testing
+
+The application uses comprehensive database testing to ensure reliable data storage and retrieval. The test suite (`tests/test_database.py`) verifies both SQLite and MongoDB connections:
+
+### Test Setup
+- Uses Python's built-in `unittest` framework
+- Creates an in-memory SQLite database for testing
+- Implements `mongomock` for MongoDB testing without a real database connection
+- Sets up and tears down test environment for each test case
+
+### SQLite Testing
+```python
+def test_sqlite_connection(self):
+    # Tests SQLite connection and basic query execution
+    # Uses in-memory database for fast, isolated testing
+    # Verifies database connection and query functionality
+```
+
+### MongoDB Testing
+```python
+def test_mongodb_connection(self):
+    # Tests MongoDB operations using mongomock
+    # Verifies document insertion and ID generation
+    # Ensures MongoDB client functionality
+```
+
+### Key Features
+- Isolated test environment for each test case
+- In-memory SQLite database for fast testing
+- Mocked MongoDB connections for reliable testing
+- Automatic cleanup after each test
+- Tests both database connections independently
+
+### Running Tests
+```bash
+# From project root directory
+python -m unittest tests/test_database.py
+```
+
+Test results verify:
+- Database connections are established correctly
+- Basic CRUD operations work as expected
+- Error handling functions properly
+- Database sessions are managed correctly
+
+**Testing Mail**
+# Email Service Testing Documentation
+
+The test_mail.py implements comprehensive testing for the email functionality using Python's unittest framework. Here's a detailed breakdown:
+
+### Test Setup and Data
+```python
+class TestEmailService(unittest.TestCase):
+    def setUp(self):
+        # Simulates patient medical record data
+        self.test_data = {
+            'name': 'Test Patient',
+            'email': 'test@example.com',
+            'age': 30,
+            # ...other medical fields...
+        }
+```
+
+### Test Cases
+
+#### 1. Successful Email Sending
+```python
+def test_send_medical_record_success(self):
+    """
+    Verifies successful email transmission:
+    - Mocks SMTP server connection
+    - Tests email sending process
+    - Confirms sendmail method was called
+    """
+```
+
+#### 2. Missing Data Handling
+```python
+def test_send_medical_record_missing_data(self):
+    """
+    Tests error handling for incomplete data:
+    - Attempts to send email with missing fields
+    - Expects KeyError for missing required data
+    """
+```
+
+#### 3. Logo Path Testing
+```python
+@patch('os.path.join')
+def test_logo_path(self):
+    """
+    Validates logo attachment functionality:
+    - Mocks file system operations
+    - Verifies correct path construction
+    - Tests image attachment process
+    """
+```
+
+#### 4. Email Content Verification
+```python
+def test_email_content(self):
+    """
+    Checks email composition:
+    - Verifies MIME message construction
+    - Tests attachment functionality
+    - Ensures proper email formatting
+    """
+```
+
+#### 5. Error Handling
+```python
+def test_smtp_connection_error(self):
+    """
+    Tests SMTP error scenarios:
+    - Simulates connection failures
+    - Verifies error handling
+    - Ensures graceful failure
+    """
+```
+
+### Running Tests
+```bash
+# From project root directory
+python -m unittest tests/test_mail.py
+```
+
+### Key Features
+- Mocks SMTP server for isolated testing
+- Tests both success and failure scenarios
+- Verifies email content and attachments
+- Handles connection errors gracefully
+- Validates data requirements
+
+This test suite ensures reliable email functionality for medical record transmission while maintaining security and data integrity.
+
+On Sun, Feb 16, 2025 at 10:43 PM Saviour Henry <johnsavilesh@gmail.com> wrote:
+## Database Testing
+
+The application uses comprehensive database testing to ensure reliable data storage and retrieval. The test suite (`tests/test_database.py`) verifies both SQLite and MongoDB connections:
+
+### Test Setup
+- Uses Python's built-in `unittest` framework
+- Creates an in-memory SQLite database for testing
+- Implements `mongomock` for MongoDB testing without a real database connection
+- Sets up and tears down test environment for each test case
+
+### SQLite Testing
+```python
+def test_sqlite_connection(self):
+    # Tests SQLite connection and basic query execution
+    # Uses in-memory database for fast, isolated testing
+    # Verifies database connection and query functionality
+```
+
+### MongoDB Testing
+```python
+def test_mongodb_connection(self):
+    # Tests MongoDB operations using mongomock
+    # Verifies document insertion and ID generation
+    # Ensures MongoDB client functionality
+```
+
+### Key Features
+- Isolated test environment for each test case
+- In-memory SQLite database for fast testing
+- Mocked MongoDB connections for reliable testing
+- Automatic cleanup after each test
+- Tests both database connections independently
+
+### Running Tests
+```bash
+# From project root directory
+python -m unittest tests/test_database.py
+```
+
+Test results verify:
+- Database connections are established correctly
+- Basic CRUD operations work as expected
+- Error handling functions properly
+- Database sessions are managed correctly
