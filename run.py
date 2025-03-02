@@ -12,9 +12,8 @@ app = create_app(Config)
 # Create database tables
 with app.app_context():
     db.create_all()
-
+app.run(debug=True)
 # Run the app if this file is executed directly
-if __name__ == '__main__':
-    app.run(debug=True)
-#
-# git remote add origin https://github.com/CS-LTU/com7033-assignment-BOBASI2408.git
+#if __name__ == '__main__':
+#   app.run(debug=True)
+
